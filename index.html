@@ -35,6 +35,8 @@
             background: var(--cream);
             line-height: 1.7;
             overflow-x: hidden;
+            margin: 0;
+            padding: 0;
         }
 
         /* Header & Navigation */
@@ -48,6 +50,13 @@
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0, 32, 96, 0.1);
             animation: slideDown 0.8s ease;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(240, 245, 250, 0.98);
+            border-bottom: 1px solid rgba(0, 32, 96, 0.15);
+            box-shadow: 0 2px 8px rgba(0, 32, 96, 0.08);
         }
 
         @keyframes slideDown {
@@ -123,8 +132,10 @@
             background: var(--primary);
             position: relative;
             overflow: hidden;
-            margin-top: 0;
-            width: 100%;
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
         }
 
         .hero-slider {
@@ -953,6 +964,26 @@
     <script>
         // Set current year dynamically
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Navbar color change on scroll
+        const header = document.querySelector('header');
+        const hero = document.querySelector('.hero');
+        
+        function updateNavbar() {
+            const heroBottom = hero.offsetHeight;
+            const scrollPos = window.scrollY;
+            
+            if (scrollPos > heroBottom - 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+
+        // Run on load and scroll
+        window.addEventListener('scroll', updateNavbar);
+        window.addEventListener('load', updateNavbar);
+        updateNavbar();
 
         // Hero slider functionality
         const slides = document.querySelectorAll('.hero-slide');
