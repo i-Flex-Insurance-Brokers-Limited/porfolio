@@ -16,9 +16,9 @@
             --accent-hover: #9b0000;
             --dark: #1a1a1a;
             --dark-light: #2d2d2d;
-            --background: #f8f9fa;
-            --light: #f8f9fa;
-            --cream: #ffffff;
+            --background: #f5f7fa;
+            --light: #fafbfc;
+            --cream: #fefefe;
             --text: #1a1a1a;
             --text-light: #6b7280;
         }
@@ -120,10 +120,58 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            background: var(--primary);
             position: relative;
             overflow: hidden;
-            margin-top: 80px;
+            margin-top: 0;
+            width: 100%;
+        }
+
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        /* Background images for slider - Replace these URLs with your own images */
+        .hero-slide:nth-child(1) {
+            background: linear-gradient(135deg, rgba(0, 21, 64, 0.75), rgba(0, 32, 96, 0.85)),
+                        url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&h=1080&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-slide:nth-child(2) {
+            background: linear-gradient(135deg, rgba(0, 21, 64, 0.75), rgba(0, 32, 96, 0.85)),
+                        url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&h=1080&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-slide:nth-child(3) {
+            background: linear-gradient(135deg, rgba(0, 21, 64, 0.75), rgba(0, 32, 96, 0.85)),
+                        url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920&h=1080&fit=crop');
+            background-size: cover;
+            background-position: center;
         }
 
         .hero::before {
@@ -137,6 +185,7 @@
                 radial-gradient(circle at 20% 50%, rgba(192, 0, 0, 0.12) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(44, 82, 130, 0.15) 0%, transparent 50%);
             animation: pulse 15s ease-in-out infinite;
+            z-index: 1;
         }
 
         @keyframes pulse {
@@ -149,7 +198,7 @@
             margin: 0 auto;
             padding: 0 3rem;
             position: relative;
-            z-index: 1;
+            z-index: 2;
             animation: fadeInUp 1s ease 0.3s both;
         }
 
@@ -267,10 +316,7 @@
 
         /* About Section */
         #about {
-            background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="%23e8e8e8" stroke-width="1"/></pattern></defs><rect fill="white" width="1200" height="600"/><rect fill="url(%23grid)" width="1200" height="600"/><circle cx="100" cy="100" r="3" fill="%2300b4d8" opacity="0.3"/><circle cx="1100" cy="500" r="3" fill="%23ff6b6b" opacity="0.3"/><circle cx="600" cy="300" r="3" fill="%2300b4d8" opacity="0.3"/></svg>');
-            background-size: cover;
-            background-attachment: fixed;
+            background: var(--cream);
         }
 
         .about-content {
@@ -303,7 +349,7 @@
         .stat-item {
             text-align: center;
             padding: 2rem;
-            background: white;
+            background: var(--cream);
             border-radius: 4px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             transition: transform 0.3s ease;
@@ -337,7 +383,7 @@
         }
 
         .service-card {
-            background: white;
+            background: var(--cream);
             padding: 3rem 2rem;
             border-radius: 4px;
             border-top: 3px solid var(--accent);
@@ -392,7 +438,7 @@
         }
 
         .team-member {
-            background: white;
+            background: var(--cream);
             border-radius: 4px;
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
@@ -465,7 +511,7 @@
             gap: 1.5rem;
             margin-bottom: 2.5rem;
             padding: 2rem;
-            background: white;
+            background: var(--cream);
             border-radius: 4px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             transition: transform 0.3s ease;
@@ -511,12 +557,18 @@
         }
 
         .map-container {
-            background: white;
+            background: var(--cream);
             border-radius: 4px;
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             height: 500px;
             animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
 
         .map-placeholder {
@@ -658,6 +710,11 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <div class="hero-slider">
+            <div class="hero-slide active"></div>
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+        </div>
         <div class="hero-content">
             <h1>
                 Professional Insurance Broking Services
@@ -872,9 +929,13 @@
                 </div>
             </div>
             <div class="map-container">
-                <div class="map-placeholder">
-                    📍 Plot No. 5110, Lumumba Road, Lusaka
-                </div>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3846.0827!2d28.3!3d-15.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDI0JzAwLjAiUyAyOMKwMTgnMDAuMCJF!5e0!3m2!1sen!2szm!4v1234567890" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="I-Flex Insurance Brokers Location">
+                </iframe>
             </div>
         </div>
     </section>
@@ -883,16 +944,29 @@
     <footer>
         <div class="footer-content">
             <div class="footer-logo">I-<span>Flex</span> Insurance Brokers</div>
-            <p class="footer-text">
-                Professional insurance broking services in Zambia. Providing quality insurance intermediary services to government institutions, parastatals, manufacturing industries, mining companies, NGOs, and private sector corporations.
-            </p>
             <div class="footer-bottom">
-                <p>&copy; 2024 I-Flex Insurance Brokers Limited. All rights reserved. | TPIN: 1002121771</p>
+                <p>&copy; <span id="current-year"></span> I-Flex Insurance Brokers Limited. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Set current year dynamically
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Hero slider functionality
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Change slide every 5 seconds
+        setInterval(nextSlide, 5000);
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
