@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I-Flex Insurance Brokers Limited | Professional Insurance Services in Zambia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #002060;
+            --primary-light: #2c5282;
+            --primary-dark: #001540;
+            --accent: #C00000;
+            --accent-hover: #9b0000;
+            --dark: #1a1a1a;
+            --dark-light: #2d2d2d;
+            --background: #f8f9fa;
+            --light: #f8f9fa;
+            --cream: #ffffff;
+            --text: #1a1a1a;
+            --text-light: #6b7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 32, 96, 0.1);
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(192, 0, 0, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(44, 82, 130, 0.15) 0%, transparent 50%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            font-weight: 300;
+            color: var(--light);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+        }
+
+        .hero h1 strong {
+            font-weight: 700;
+            color: var(--secondary);
+            display: block;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(248, 246, 243, 0.9);
+            max-width: 700px;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid var(--accent-hover);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(192, 0, 0, 0.4);
+        }
+
+        .cta-button:active {
+            transform: translateY(1px);
+            border-bottom-width: 0;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 8rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+            animation: fadeInUp 0.8s ease both;
+        }
+
+        .section-tag {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        #about {
+            background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="%23e8e8e8" stroke-width="1"/></pattern></defs><rect fill="white" width="1200" height="600"/><rect fill="url(%23grid)" width="1200" height="600"/><circle cx="100" cy="100" r="3" fill="%2300b4d8" opacity="0.3"/><circle cx="1100" cy="500" r="3" fill="%23ff6b6b" opacity="0.3"/><circle cx="600" cy="300" r="3" fill="%2300b4d8" opacity="0.3"/></svg>');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-text {
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            line-height: 1.9;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 4px;
+            border-top: 3px solid var(--accent);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease both;
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+        .service-card:nth-child(5) { animation-delay: 0.5s; }
+        .service-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 32, 96, 0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease both;
+        }
+
+        .team-member:nth-child(1) { animation-delay: 0.1s; }
+        .team-member:nth-child(2) { animation-delay: 0.2s; }
+        .team-member:nth-child(3) { animation-delay: 0.3s; }
+        .team-member:nth-child(4) { animation-delay: 0.4s; }
+        .team-member:nth-child(5) { animation-delay: 0.5s; }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 32, 96, 0.15);
+        }
+
+        .team-member-header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            padding: 2.5rem 2rem 2rem 2rem;
+            color: white;
+        }
+
+        .team-member h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: #93c5fd;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .team-member-body {
+            padding: 2rem;
+        }
+
+        .team-member-body p {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: var(--light);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            margin-top: 3rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: start;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-details p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .contact-details a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-details a:hover {
+            color: var(--accent-hover);
+        }
+
+        .map-container {
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            height: 500px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.8);
+            padding: 4rem 3rem 2rem 3rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo span {
+            color: var(--secondary);
+        }
+
+        .footer-text {
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .nav-links {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                margin-top: 120px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            section {
+                padding: 5rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .services-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">I-<span>Flex</span></div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                Professional Insurance Broking Services
+                <strong>Trusted. Reliable. Expert.</strong>
+            </h1>
+            <p>
+                I-Flex Insurance Brokers Limited provides quality insurance intermediary services across Zambia, serving government institutions, parastatals, manufacturing industries, mining companies, NGOs, and private sector corporations.
+            </p>
+            <a href="#contact" class="cta-button">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-header">
+            <div class="section-tag">Who We Are</div>
+            <h2 class="section-title">About I-Flex Insurance Brokers</h2>
+            <p class="section-subtitle">
+                A Zambian-owned company with a commitment to excellence in insurance broking services since 2011
+            </p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    I-Flex Insurance Brokers Limited is a Zambian-owned company first incorporated on 21st November 2011. Since then, we have undergone tremendous transformation in quality service provision and organizational structure.
+                </p>
+                <p>
+                    Our company is owned by Michev Holding (70% shareholding) and Plates Consortium (30% shareholding), providing a strong foundation for our operations across the Zambian market.
+                </p>
+                <p>
+                    Our primary aim is to provide professional general insurance broking services on the Zambian market. We are established to provide quality insurance intermediary services to a diverse clientele including Government Institutions, Parastatals, Manufacturing Industries, Mining Companies, NGOs, and Private sector corporations.
+                </p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">13+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Insurance Products</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="section-header">
+            <div class="section-tag">What We Offer</div>
+            <h2 class="section-title">Our Insurance Services</h2>
+            <p class="section-subtitle">
+                Comprehensive insurance solutions tailored to meet your specific needs
+            </p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🚗</div>
+                <h3>Motor Insurance</h3>
+                <p>Comprehensive motor vehicle insurance coverage for private and commercial vehicles, protecting you against accidents, theft, and third-party liabilities.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏢</div>
+                <h3>Property Insurance</h3>
+                <p>Protect your properties and assets against fire, theft, natural disasters, and other unforeseen events with our comprehensive property insurance solutions.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⚕️</div>
+                <h3>Medical Insurance</h3>
+                <p>Quality healthcare coverage for individuals and groups, ensuring access to medical services when you need them most.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👥</div>
+                <h3>Group Life & Credit Insurance</h3>
+                <p>Comprehensive life insurance and credit protection services designed to safeguard your financial future and that of your loved ones.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🛡️</div>
+                <h3>Liability Insurance</h3>
+                <p>Protect your business against legal liabilities and claims with our comprehensive liability insurance policies.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏗️</div>
+                <h3>Engineering Insurance</h3>
+                <p>Specialized insurance coverage for engineering projects, machinery, and equipment, ensuring protection throughout construction and operation.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌾</div>
+                <h3>Agriculture Insurance</h3>
+                <p>Protect your agricultural investments against weather risks, crop failures, and other agricultural hazards.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💧</div>
+                <h3>Hydro Parametric Insurance</h3>
+                <p>Innovative parametric insurance solutions designed to protect against water-related risks and hydro-meteorological events.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌦️</div>
+                <h3>Weather Index Insurance</h3>
+                <p>Cutting-edge weather-based insurance products that provide financial protection based on weather indices and patterns.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🚑</div>
+                <h3>General Accident Insurance</h3>
+                <p>Personal and group personal accident coverage providing financial protection against accidental injuries, disability, and death.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team">
+        <div class="section-header">
+            <div class="section-tag">Leadership</div>
+            <h2 class="section-title">Our Leadership Team</h2>
+            <p class="section-subtitle">
+                Experienced professionals dedicated to your insurance needs
+            </p>
+        </div>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-member-header">
+                    <h3>Fred Munkombwe</h3>
+                    <div class="team-role">Board Chairman</div>
+                </div>
+                <div class="team-member-body">
+                    <p>An accomplished financial and insurance professional with extensive experience in financial management, internal auditing, and corporate leadership. Previously served as CFO for Madison General Insurance.</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="team-member-header">
+                    <h3>Jimmy Muchimba</h3>
+                    <div class="team-role">Director - Audit</div>
+                </div>
+                <div class="team-member-body">
+                    <p>Strategic CEO with over 15 years of experience in Technology, Fintech, Telecoms, Agriculture, Microfinance, and Mining. Expert in driving organizational growth and digital transformation initiatives.</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="team-member-header">
+                    <h3>Florence Banda</h3>
+                    <div class="team-role">Director</div>
+                </div>
+                <div class="team-member-body">
+                    <p>Qualified Accountant with 15 years of corporate experience in finance, having led finance departments with organizations including Senangu Safaris, Zambezi Drilling, NWK Agri, and Mount Meru Millers.</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="team-member-header">
+                    <h3>Mweene Monga</h3>
+                    <div class="team-role">Managing Director</div>
+                </div>
+                <div class="team-member-body">
+                    <p>Accomplished Insurance Practitioner with over 20 years of experience in both emerging and developed markets. Holds an MSc in Risk Management, BA Degree, and Certificate in Insurance (CII).</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="team-member-header">
+                    <h3>Chiluba Bowa</h3>
+                    <div class="team-role">Director Operations</div>
+                </div>
+                <div class="team-member-body">
+                    <p>Experienced professional insurer with 20+ years in the industry, having served as Head of Agriculture, Head of Underwriting, and Special Projects in various insurance companies on the Zambian market.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-header">
+            <div class="section-tag">Get in Touch</div>
+            <h2 class="section-title">Contact Us</h2>
+            <p class="section-subtitle">
+                We're here to help with all your insurance needs
+            </p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h4>Visit Us</h4>
+                        <p>Plot No. 5110, Lumumba Road<br>Villa Elizabeth, Lusaka<br>Zambia</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-details">
+                        <h4>Call Us</h4>
+                        <p>
+                            <a href="tel:+260971484760">+260 971 484 760</a><br>
+                            <a href="tel:+260977454763">+260 977 454 763</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-details">
+                        <h4>Email Us</h4>
+                        <p>
+                            <a href="mailto:info@iflexinsurance.com">info@iflexinsurance.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    📍 Plot No. 5110, Lumumba Road, Lusaka
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">I-<span>Flex</span> Insurance Brokers</div>
+            <p class="footer-text">
+                Professional insurance broking services in Zambia. Providing quality insurance intermediary services to government institutions, parastatals, manufacturing industries, mining companies, NGOs, and private sector corporations.
+            </p>
+            <div class="footer-bottom">
+                <p>&copy; 2024 I-Flex Insurance Brokers Limited. All rights reserved. | TPIN: 1002121771</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.service-card, .value-item, .team-member, .stat-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
